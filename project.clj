@@ -1,4 +1,4 @@
-(defproject cc.qbits/caffeine "0.1.0-SNAPSHOT"
+(defproject cc.qbits/caffeine "0.1.5"
   :description "Wrapper of ben-manes/caffeine"
   :url "https://github.com/mpenet/caffeine"
   :license {:name "Eclipse Public License"
