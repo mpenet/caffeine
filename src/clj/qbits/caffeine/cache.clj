@@ -9,7 +9,7 @@
     Cache)))
 
 (defn ^Cache make
-  [options f]
+  [options]
   (-> (Caffeine/newBuilder)
       (options/set-cache-options! options)
       (.build)))
