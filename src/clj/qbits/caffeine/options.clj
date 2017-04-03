@@ -41,14 +41,6 @@
   [_ ^Caffeine c exec]
   (.executor c exec))
 
-(defmethod set-cache-option! :executor
-  [_ ^Caffeine c exec]
-  (.executor c exec))
-
-(defmethod set-cache-option! :maximum-weight
-  [_ ^Caffeine c mw]
-  (.maximumWeight c mw))
-
 (defmethod set-cache-option! :weak-keys?
   [_ ^Caffeine c weak-keys?]
   (cond-> c
@@ -72,10 +64,6 @@
   (cond-> c
     record-stats?
     (.recordStats)))
-
-(defmethod set-cache-option! :executor
-  [_ ^Caffeine c exec]
-  (.executor c exec))
 
 (defn ^Caffeine set-cache-options!
   [^Caffeine cache options]
