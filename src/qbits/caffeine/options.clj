@@ -8,7 +8,7 @@
 (defmulti set-cache-option! (fn [k c v] k))
 
 (defmethod set-cache-option! :expire-after-access
-  [_ ^Caffeine c [duration unit]]
+  [_ ^Caffeine c & [duration unit]]
   (.expireAfterAccess c duration (time-unit unit)))
 
 (defmethod set-cache-option! :expire-after-write
