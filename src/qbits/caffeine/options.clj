@@ -1,23 +1,21 @@
 (ns qbits.caffeine.options
-  (:require [qbits.commons.enum :as enum])
   (:import
-   (com.github.benmanes.caffeine.cache Caffeine)))
+   (com.github.benmanes.caffeine.cache Caffeine)
+   (java.util.concurrent TimeUnit)))
 
-(def time-unit (enum/enum->fn java.util.concurrent.TimeUnit))
-
-(defmulti set-cache-option! (fn [k c v] k))
+(defmulti set-cache-option! (fn [k _c _v] k))
 
 (defmethod set-cache-option! :expire-after-access
-  [_ ^Caffeine c & [duration unit]]
-  (.expireAfterAccess c duration (time-unit unit)))
+  [_ ^Caffeine c duration]
+  (.expireAfterAccess c (long duration) TimeUnit/MILLISECONDS))
 
 (defmethod set-cache-option! :expire-after-write
-  [_ ^Caffeine c [duration unit]]
-  (.expireAfterWrite c (long duration) (time-unit unit)))
+  [_ ^Caffeine c duration]
+  (.expireAfterWrite c (long duration) TimeUnit/MILLISECONDS))
 
 (defmethod set-cache-option! :refresh-after-write
-  [_ ^Caffeine c [duration unit]]
-  (.refreshAfterWrite c (long duration) (time-unit unit)))
+  [_ ^Caffeine c duration]
+  (.refreshAfterWrite c (long duration) TimeUnit/MILLISECONDS))
 
 (defmethod set-cache-option! :initial-capacity
   [_ ^Caffeine c x]
