@@ -1,0 +1,29 @@
+{:exoscale.project/lib cc.qbits/caffeine
+ :exoscale.project/version-file "VERSION"
+ :exoscale.project/deploy? true
+ :slipset.deps-deploy/exec-args {:installer :remote
+                                 :sign-releases? false
+                                 :repository "clojars"}
+ :deps
+ {org.clojure/clojure {:mvn/version "1.11.1"}
+  cc.qbits/commons {:mvn/version "1.0.0-alpha6"}
+  com.github.ben-manes.caffeine/caffeine {:mvn/version "3.1.3"}}
+
+ :aliases
+ {:project {:deps {io.github.exoscale/tools.project {:git/sha "5f24196ebea4dc6e601d201d97b463ea26923c7e"}}
+            :ns-default exoscale.tools.project
+            :jvm-opts ["-Dclojure.main.report=stderr"]}
+
+  :test {:extra-paths ["test"]
+         :extra-deps {org.clojure/test.check {:mvn/version "1.1.1"}
+                      eftest/eftest {:mvn/version "0.6.0"}}}
+
+  :quickdoc
+  {:deps {org.babashka/cli {:mvn/version "0.4.36"}
+          io.github.borkdude/quickdoc
+          {:deps/root "jvm"
+           :git/sha "c5320cbe311b651a60b47f4d00d7e8ab63291b6e"}}
+   :main-opts ["-m" "babashka.cli.exec" "quickdoc.api" "quickdoc"]
+
+   :exec-args {:github/repo "https://github.com/exoscale/telemetry"
+               :git/branch "main"}}}}

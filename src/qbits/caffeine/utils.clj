@@ -3,12 +3,15 @@
    (com.github.benmanes.caffeine.cache CacheLoader)
    (java.util.function Function)))
 
-(defn ^Function func [f]
+(defn func
+  ^Function [f]
   (reify Function
-    (apply [this args]
+    (apply [_this args]
       (f args))))
 
-(defn ^CacheLoader cache-loader [f]
+(defn cache-loader
+  ^CacheLoader
+  [f]
   (reify CacheLoader
-    (load [this k]
+    (load [_this k]
       (f k))))

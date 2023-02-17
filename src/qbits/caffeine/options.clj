@@ -1,13 +1,7 @@
 (ns qbits.caffeine.options
   (:require [qbits.commons.enum :as enum])
   (:import
-   (com.github.benmanes.caffeine.cache
-    Caffeine
-    Cache
-    LoadingCache
-    CacheLoader
-    Weigher)
-   (java.util.function Function)))
+   (com.github.benmanes.caffeine.cache Caffeine)))
 
 (def time-unit (enum/enum->fn java.util.concurrent.TimeUnit))
 
@@ -65,7 +59,8 @@
     record-stats?
     (.recordStats)))
 
-(defn ^Caffeine set-cache-options!
+(defn set-cache-options!
+  ^Caffeine
   [^Caffeine cache options]
   (reduce (fn [cache [k option]]
             (set-cache-option! k cache option))

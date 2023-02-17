@@ -9,6 +9,8 @@
     Cache
     LoadingCache)))
 
+(set! *warn-on-reflection* true)
+
 (defn make
   (^Cache [options]
    (-> (Caffeine/newBuilder)
@@ -62,3 +64,4 @@
 
 (defn stats [^Cache c]
   (.stats c))
+
