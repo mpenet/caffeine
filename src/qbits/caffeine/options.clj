@@ -69,6 +69,10 @@
     record-stats?
     (.recordStats)))
 
+(defmethod set-cache-option! :default
+  [_ ^Caffeine c _]
+  c)
+
 (s/def :qbits.caffeine/options
   (s/keys :opt-un [:qbits.caffeine.options/expire-after-access
                    :qbits.caffeine.options/expire-after-write
