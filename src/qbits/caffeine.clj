@@ -58,7 +58,7 @@
     (.put c k x))
 
   (-get
-    ([c k] (.getIfPresent c k))
+    ([c k] (.get c k))
     ([c k f]
      (.get c k (u/func f))))
 
